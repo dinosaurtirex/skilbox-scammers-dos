@@ -10,6 +10,7 @@ R_COUNTER = 0
 
 class SkillBoxDos:
 
+    
     def get_headers(self) -> dict:
         return {
             'authority': 'skillboxadverspartner.ru',
@@ -21,12 +22,15 @@ class SkillBoxDos:
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
         }
 
+    
     def generate_name(self) -> str:
         return generate_username(2)[0]
 
+    
     def generate_username(self) -> str:
         return generate_username(2)[0]
 
+    
     def generate_data(self) -> dict:
         return {
             "name": self.generate_name(),
@@ -40,6 +44,7 @@ class SkillBoxDos:
             "views": r(5000,23000)
         }
 
+    
     async def make_request(self) -> str:
         global R_COUNTER
         async with aiohttp.ClientSession() as session:
