@@ -30,13 +30,23 @@ class SkillBoxDos:
     def generate_username(self) -> str:
         return generate_username(2)[0]
 
+
+    def generate_method(self) -> str:
+        methods = ["sber", "сбер", "сбербанк", "альфа", "tinkoff", "тиньков", "tinkoff"]
+        return methods[r(0, len(methods)-1)]
+    
+    
+    def get_phone_mask(self) -> int:
+        masks = [995, 911, 953]
+        return masks[r(0, len(masks)-1)]
+    
     
     def generate_data(self) -> dict:
         return {
             "name": self.generate_name(),
             "email": f"{self.generate_username()}@gmail.com",
-            "phone": f"{8999}{r(100,999)}{r(10,20)}{r(10,19)}",
-            "method": "Sberbank",
+            "phone": f"8{self.get_phone_mask()}{r(100,999)}{r(10,20)}{r(10,19)}",
+            "method": self.generate_method(),
             "tg": f"t.me/{self.generate_username()}",
             "ads": f"t.me/{self.generate_username()}",
             "manager": self.generate_name(),
